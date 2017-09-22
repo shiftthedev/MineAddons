@@ -1,0 +1,16 @@
+[
+{
+  "modid": "mineaddons",
+  "name": "Mine Addons",
+  "description": "A mod that adds extras to minecraft.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["IamShift"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

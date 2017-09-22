@@ -1,0 +1,8 @@
+{
+	"parent": "block/orientable",
+	"textures": {
+		"top": "mineaddons:blocks/terracotta_brown",
+        "front": "mineaddons:blocks/terracotta_brown",
+        "side": "mineaddons:blocks/terracotta_brown"
+	}
+}

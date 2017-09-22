@@ -1,0 +1,20 @@
+{
+	"variants": {
+		"type=white": { "model": "mineaddons:concrete_white" },
+        "type=orange": { "model": "mineaddons:concrete_orange" },
+        "type=magenta": { "model": "mineaddons:concrete_magenta" },
+        "type=light_blue": { "model": "mineaddons:concrete_light_blue" },
+        "type=yellow": { "model": "mineaddons:concrete_yellow" },
+        "type=lime": { "model": "mineaddons:concrete_lime" },
+        "type=pink": { "model": "mineaddons:concrete_pink" },
+        "type=gray": { "model": "mineaddons:concrete_gray" },
+        "type=light_gray": { "model": "mineaddons:concrete_light_gray" },
+        "type=cyan": { "model": "mineaddons:concrete_cyan" },
+        "type=purple": { "model": "mineaddons:concrete_purple" },
+        "type=blue": { "model": "mineaddons:concrete_blue" },
+        "type=brown": { "model": "mineaddons:concrete_brown" },
+        "type=green": { "model": "mineaddons:concrete_green" },
+        "type=red": { "model": "mineaddons:concrete_red" },
+        "type=black": { "model": "mineaddons:concrete_black" }
+	}
+}

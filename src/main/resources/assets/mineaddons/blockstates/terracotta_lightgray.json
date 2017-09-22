@@ -1,0 +1,8 @@
+{
+	"variants": {
+		"facing=north": { "model": "mineaddons:terracotta_lightgray" },
+        "facing=south": { "model": "mineaddons:terracotta_lightgray", "y": 180 },
+        "facing=west": { "model": "mineaddons:terracotta_lightgray", "y": 270 },
+        "facing=east": { "model": "mineaddons:terracotta_lightgray", "y": 90 }
+	}
+}

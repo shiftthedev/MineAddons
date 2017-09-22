@@ -1,0 +1,81 @@
+item.booster.name=Butt Booster
+potion.booster=Butt Boosting
+booster.tooltip.charge=Duration
+
+tile.terracotta_white.name=White Terracotta Block
+tile.terracotta_orange.name=Orange Terracotta Block
+tile.terracotta_magenta.name=Magenta Terracotta Block
+tile.terracotta_lightblue.name=Light Blue Terracotta Block
+tile.terracotta_yellow.name=Yellow Terracotta Block
+tile.terracotta_lime.name=Lime Terracotta Block
+tile.terracotta_pink.name=Pink Terracotta Block
+tile.terracotta_gray.name=Gray Terracotta Block
+tile.terracotta_lightgray.name=Light Gray Terracotta Block
+tile.terracotta_cyan.name=Cyan Terracotta Block
+tile.terracotta_purple.name=Purple Terracotta Block
+tile.terracotta_blue.name=Blue Terracotta Block
+tile.terracotta_brown.name=Brown Terracotta Block
+tile.terracotta_green.name=Green Terracotta Block
+tile.terracotta_red.name=Red Terracotta Block
+tile.terracotta_black.name=Black Terracotta Block
+
+tile.concrete.white.name=White Concrete Block
+tile.concrete.orange.name=Orange Concrete Block
+tile.concrete.magenta.name=Magenta Concrete Block
+tile.concrete.light_blue.name=Light Blue Concrete Block
+tile.concrete.yellow.name=Yellow Concrete Block
+tile.concrete.lime.name=Lime Concrete Block
+tile.concrete.pink.name=Pink Concrete Block
+tile.concrete.gray.name=Gray Concrete Block
+tile.concrete.light_gray.name=Light Gray Concrete Block
+tile.concrete.cyan.name=Cyan Concrete Block
+tile.concrete.purple.name=Purple Concrete Block
+tile.concrete.blue.name=Blue Concrete Block
+tile.concrete.brown.name=Brown Concrete Block
+tile.concrete.green.name=Green Concrete Block
+tile.concrete.red.name=Red Concrete Block
+tile.concrete.black.name=Black Concrete Block
+
+tile.concrete_powder.white.name=White Concrete Powder Block
+tile.concrete_powder.orange.name=Orange Concrete Powder Block
+tile.concrete_powder.magenta.name=Magenta Concrete Powder Block
+tile.concrete_powder.light_blue.name=Light Blue Concrete Powder Block
+tile.concrete_powder.yellow.name=Yellow Concrete Powder Block
+tile.concrete_powder.lime.name=Lime Concrete Powder Block
+tile.concrete_powder.pink.name=Pink Concrete Powder Block
+tile.concrete_powder.gray.name=Gray Concrete Powder Block
+tile.concrete_powder.light_gray.name=Light Gray Concrete Powder Block
+tile.concrete_powder.cyan.name=Cyan Concrete Powder Block
+tile.concrete_powder.purple.name=Purple Concrete Powder Block
+tile.concrete_powder.blue.name=Blue Concrete Powder Block
+tile.concrete_powder.brown.name=Brown Concrete Powder Block
+tile.concrete_powder.green.name=Green Concrete Powder Block
+tile.concrete_powder.red.name=Red Concrete Powder Block
+tile.concrete_powder.black.name=Black Concrete Powder Block
+
+tile.lavasponge.dry.name=Lava Sponge
+tile.lavasponge.wet.name=Wet Lava Sponge
+
+item.cellulose.name=Cellulose
+
+fluid.sacredwater=Sacred Water
+fluid.cursedwater=Cursed Water
+
+item.witherdust.name=Wither Dust
+item.rainbowbottle.name=Rainbow in a Bottle
+
+achievement.witherdust=Dusting!
+achievement.witherdust.desc=Get your first Wither Dust
+achievement.cursedwater=Cursing the waters
+achievement.cursedwater.desc=Create your first block of Cursed Water
+
+achievement.rainbowbottle=Bottling!
+achievement.rainbowbottle.desc=Get your first Rainbow in a Bottle
+achievement.sacredwater=Blessing the waters
+achievement.sacredwater.desc=Create your first block of Sacred Water
+
+achievement.buttbooster=Booosting!
+achievement.buttbooster.desc=Craft your first Butt Booster
+
+achievement.lavasponge=Sponging!
+achievement.lavasponge.desc=Craft your first Lava Sponge

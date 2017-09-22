@@ -1,0 +1,95 @@
+package com.iamshift.achievements;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import com.iamshift.Config;
+import com.iamshift.References;
+import com.iamshift.blocks.ModBlocks;
+import com.iamshift.fluids.ModFluids;
+import com.iamshift.items.ModItems;
+
+import net.minecraft.block.Block;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.stats.Achievement;
+import net.minecraftforge.common.AchievementPage;
+import net.minecraftforge.common.ForgeModContainer;
+import net.minecraftforge.fluids.UniversalBucket;
+
+public class AchievementHandler 
+{
+	private static List<Achievement> achievements = new ArrayList<Achievement>();
+
+	public static Achievement achievementWitherDust;
+	public static Achievement achievementCursedWater;
+
+	public static Achievement achievementRainbowBottle;
+	public static Achievement achievementSacredWater;
+
+	public static Achievement achievementButtBooster;
+	
+	public static Achievement achievementLavaSponge;
+
+	public static void init()
+	{
+		if(Config.buttbooster)
+			achievementButtBooster = createAchievement("buttbooster", 1, 0, ModItems.buttBooster, null);
+
+		if(Config.cursedwater)
+		{
+			achievementWitherDust = createAchievement("witherdust", 0, 2, ModItems.witherDust, null);
+			achievementCursedWater = createAchievement("cursedwater", 0, 3, UniversalBucket.getFilledBucket(ForgeModContainer.getInstance().universalBucket, ModFluids.cursedwater), achievementWitherDust);
+		}
+
+		if(Config.sacredwater)
+		{
+			achievementRainbowBottle = createAchievement("rainbowbottle", 2, 2, ModItems.rainbowBottle, null);
+			achievementSacredWater = createAchievement("sacredwater", 2, 3, UniversalBucket.getFilledBucket(ForgeModContainer.getInstance().universalBucket, ModFluids.sacredwater), achievementRainbowBottle);
+		}
+		
+		if(Config.lavasponge)
+			achievementLavaSponge = createAchievement("lavasponge", 1, 5, ModBlocks.lavasponge, null);
+	}
+
+	public static void registerAchievements()
+	{
+		if(isEmpty())
+			return;
+		
+		Achievement[] achievementArray = new Achievement[achievements.size()];
+
+		for(Achievement achievement : achievements)
+		{
+			achievement.registerStat();
+			achievementArray[achievements.indexOf(achievement)] = achievement;
+		}
+		AchievementPage.registerAchievementPage(new AchievementPage(References.MODNAME, achievementArray));
+	}
+
+	private static Achievement createAchievement(String name, int column, int row, Item item, Achievement parent)
+	{
+		Achievement achievement = new Achievement("achievement." + name, name, column, row, item, parent);
+		achievements.add(achievement);
+		return achievement;
+	}
+
+	private static Achievement createAchievement(String name, int column, int row, ItemStack stack, Achievement parent)
+	{
+		Achievement achievement = new Achievement("achievement." + name, name, column, row, stack, parent);
+		achievements.add(achievement);
+		return achievement;
+	}
+
+	private static Achievement createAchievement(String name, int column, int row, Block block, Achievement parent)
+	{
+		Achievement achievement = new Achievement("achievement." + name, name, column, row, block, parent);
+		achievements.add(achievement);
+		return achievement;
+	}
+
+	public static boolean isEmpty() 
+	{
+		return achievements.size() == 0;
+	}
+}
