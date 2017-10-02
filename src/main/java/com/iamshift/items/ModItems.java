@@ -18,6 +18,10 @@ public class ModItems
 	public static Item witherDust;
 	public static Item rainbowBottle;
 	
+	public static Item ironnugget;
+	
+	public static Item supernametag;
+	
 	public static void init()
 	{
 		if(Config.buttbooster)
@@ -40,6 +44,10 @@ public class ModItems
 		if(Config.cursedwater)
 			witherDust = new WitherDust("witherdust");
 		
+		if(Config.ironnuggets)
+			ironnugget = new IronNugget("ironnugget");
 		
+		if(Config.supernametag)
+			supernametag = new SuperNameTag("supernametag");
 	}
 }

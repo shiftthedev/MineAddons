@@ -2,6 +2,7 @@ package com.iamshift.fluids;
 
 import com.iamshift.References;
 
+import net.minecraft.item.EnumRarity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
@@ -13,5 +14,7 @@ public class CursedWaterFluid extends Fluid
 		super("cursedwater", new ResourceLocation(References.MODID, "fluids/cursedwater_still"), new ResourceLocation(References.MODID, "fluids/cursedwater_flow"));
 		FluidRegistry.registerFluid(this);
 		FluidRegistry.addBucketForFluid(this);
+		setTemperature(1450);
+		setRarity(EnumRarity.RARE);
 	}
 }

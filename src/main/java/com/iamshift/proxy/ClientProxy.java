@@ -3,14 +3,22 @@ package com.iamshift.proxy;
 import com.iamshift.Config;
 import com.iamshift.References;
 import com.iamshift.blocks.ModBlocks;
+import com.iamshift.entities.EntityPeaceCreeper;
+import com.iamshift.entities.EntityTrueCreeper;
+import com.iamshift.entities.renders.RenderPeaceCreeper;
+import com.iamshift.entities.renders.RenderTrueCreeper;
 import com.iamshift.fluids.ModFluids;
 import com.iamshift.items.ModItems;
 
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.renderer.entity.Render;
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.fml.client.registry.IRenderFactory;
+import net.minecraftforge.fml.client.registry.RenderingRegistry;
 
 public class ClientProxy extends CommonProxy
 {
@@ -24,7 +32,7 @@ public class ClientProxy extends CommonProxy
 
 		if(Config.lavasponge || Config.sponge)
 			ModelLoader.setCustomModelResourceLocation(ModItems.cellulose, 0, new ModelResourceLocation(ModItems.cellulose.getRegistryName(), "inventory"));
-		
+
 		ModBlocks.registerRenders();
 
 		if(Config.lavasponge)
@@ -72,12 +80,44 @@ public class ClientProxy extends CommonProxy
 		if(Config.sacredwater || Config.cursedwater)
 		{
 			ModFluids.renderFluids();
-			
+
 			if(Config.sacredwater)
 				ModelLoader.setCustomModelResourceLocation(ModItems.rainbowBottle, 0, new ModelResourceLocation(ModItems.rainbowBottle.getRegistryName(), "inventory"));
-				
+
 			if(Config.cursedwater)
 				ModelLoader.setCustomModelResourceLocation(ModItems.witherDust, 0, new ModelResourceLocation(ModItems.witherDust.getRegistryName(), "inventory"));
 		}
+
+		if(Config.truecreeper)
+		{
+			RenderingRegistry.registerEntityRenderingHandler(EntityTrueCreeper.class, new IRenderFactory() 
+			{
+				@Override
+				public Render createRenderFor(RenderManager manager) 
+				{
+					return new RenderTrueCreeper(manager);
+				}
+
+			});
+		}
+		
+		if(Config.peacecreeper)
+		{
+			RenderingRegistry.registerEntityRenderingHandler(EntityPeaceCreeper.class, new IRenderFactory() 
+			{
+				@Override
+				public Render createRenderFor(RenderManager manager) 
+				{
+					return new RenderPeaceCreeper(manager);
+				}
+
+			});
+		}
+		
+		if(Config.ironnuggets)
+			ModelLoader.setCustomModelResourceLocation(ModItems.ironnugget, 0, new ModelResourceLocation(ModItems.ironnugget.getRegistryName(), "inventory"));
+		
+		if(Config.supernametag)
+			ModelLoader.setCustomModelResourceLocation(ModItems.supernametag, 0, new ModelResourceLocation("minecraft:name_tag", "inventory"));
 	}
 }

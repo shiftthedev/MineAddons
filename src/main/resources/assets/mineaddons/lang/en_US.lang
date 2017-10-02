@@ -1,6 +1,8 @@
 item.booster.name=Butt Booster
 potion.booster=Butt Boosting
 booster.tooltip.charge=Duration
+achievement.buttbooster=Booosting!
+achievement.buttbooster.desc=Craft your first Butt Booster
 
 tile.terracotta_white.name=White Terracotta Block
 tile.terracotta_orange.name=Orange Terracotta Block
@@ -35,7 +37,6 @@ tile.concrete.brown.name=Brown Concrete Block
 tile.concrete.green.name=Green Concrete Block
 tile.concrete.red.name=Red Concrete Block
 tile.concrete.black.name=Black Concrete Block
-
 tile.concrete_powder.white.name=White Concrete Powder Block
 tile.concrete_powder.orange.name=Orange Concrete Powder Block
 tile.concrete_powder.magenta.name=Magenta Concrete Powder Block
@@ -56,26 +57,30 @@ tile.concrete_powder.black.name=Black Concrete Powder Block
 tile.lavasponge.dry.name=Lava Sponge
 tile.lavasponge.wet.name=Wet Lava Sponge
 
-item.cellulose.name=Cellulose
-
 fluid.sacredwater=Sacred Water
 fluid.cursedwater=Cursed Water
-
 item.witherdust.name=Wither Dust
 item.rainbowbottle.name=Rainbow in a Bottle
-
 achievement.witherdust=Dusting!
 achievement.witherdust.desc=Get your first Wither Dust
 achievement.cursedwater=Cursing the waters
 achievement.cursedwater.desc=Create your first block of Cursed Water
-
 achievement.rainbowbottle=Bottling!
 achievement.rainbowbottle.desc=Get your first Rainbow in a Bottle
 achievement.sacredwater=Blessing the waters
 achievement.sacredwater.desc=Create your first block of Sacred Water
 
-achievement.buttbooster=Booosting!
-achievement.buttbooster.desc=Craft your first Butt Booster
-
+item.cellulose.name=Cellulose
 achievement.lavasponge=Sponging!
 achievement.lavasponge.desc=Craft your first Lava Sponge
+
+entity.mineaddons.truecreeper.name=True Creeper
+entity.mineaddons.peacecreeper.name=Peace Creeper
+achievement.peacecreeper=First Real Tame!
+achievement.peacecreeper.desc=Tamed a Peace Creeper
+
+item.ironnugget.name=Iron Nugget
+
+tile.observer.name=Observer Block
+
+item.supernametag.name=Super Name Tag

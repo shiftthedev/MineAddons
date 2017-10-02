@@ -6,11 +6,15 @@ import java.util.List;
 import com.iamshift.Config;
 import com.iamshift.References;
 import com.iamshift.blocks.ModBlocks;
+import com.iamshift.entities.EntityPeaceCreeper;
+import com.iamshift.entities.ModEntities;
 import com.iamshift.fluids.ModFluids;
 import com.iamshift.items.ModItems;
 
 import net.minecraft.block.Block;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemMonsterPlacer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.Achievement;
 import net.minecraftforge.common.AchievementPage;
@@ -30,6 +34,8 @@ public class AchievementHandler
 	public static Achievement achievementButtBooster;
 	
 	public static Achievement achievementLavaSponge;
+	
+	public static Achievement achievementTamePeaceCreeper;
 
 	public static void init()
 	{
@@ -50,6 +56,11 @@ public class AchievementHandler
 		
 		if(Config.lavasponge)
 			achievementLavaSponge = createAchievement("lavasponge", 1, 5, ModBlocks.lavasponge, null);
+		
+		if(Config.truecreeper)
+		{
+			achievementTamePeaceCreeper = createAchievement("peacecreeper", 1, 7, Items.GUNPOWDER, null);
+		}
 	}
 
 	public static void registerAchievements()

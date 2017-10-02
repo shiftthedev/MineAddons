@@ -15,9 +15,8 @@ public class RecipeHandler
 
 	public RecipeHandler() {}
 
-	public static void registerShapless() 
+	public static void registerRecipies() 
 	{
-		//BUTT BOOSTER
 		if(Config.buttbooster)
 		{
 			
@@ -43,7 +42,6 @@ public class RecipeHandler
 			GameRegistry.addShapelessRecipe(stack, new Object[] { Items.REEDS, Items.GUNPOWDER, Items.GUNPOWDER, Items.GUNPOWDER });
 		}
 		
-		//CONCRETE
 		if(Config.concrete)
 		{
 			GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.concrete_powder, 8, 0), new Object[] { Blocks.SAND, Blocks.GRAVEL, Blocks.SAND, Blocks.GRAVEL, new ItemStack(Items.DYE, 1, 15), Blocks.GRAVEL, Blocks.SAND, Blocks.GRAVEL, Blocks.SAND });
@@ -64,24 +62,29 @@ public class RecipeHandler
 		    GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.concrete_powder, 8, 15), new Object[] { Blocks.SAND, Blocks.GRAVEL, Blocks.SAND, Blocks.GRAVEL, new ItemStack(Items.DYE, 1, 0), Blocks.GRAVEL, Blocks.SAND, Blocks.GRAVEL, Blocks.SAND });
 		}
 
-		//LAVA SPONGE
 		if(Config.lavasponge)
 		{
 			GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.lavasponge, 1, 0), new Object[] { Blocks.SOUL_SAND, ModItems.cellulose, ModItems.cellulose, ModItems.cellulose, ModItems.cellulose});
 			GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.lavasponge, 1, 0), new Object[] { new ItemStack(ModBlocks.lavasponge, 1, 1), Items.WATER_BUCKET.setContainerItem(Items.BUCKET) });
 		}
 		
-		//SPONGE
 		if(Config.sponge)
 			GameRegistry.addShapelessRecipe(new ItemStack(Blocks.SPONGE, 1, 0), new Object[] { Blocks.SAND, ModItems.cellulose, ModItems.cellulose, ModItems.cellulose, ModItems.cellulose});
 			
+		if(Config.ironnuggets)
+		{
+			GameRegistry.addShapelessRecipe(new ItemStack(ModItems.ironnugget, 9), new Object[] { Items.IRON_INGOT});
+			GameRegistry.addShapedRecipe(new ItemStack(Items.IRON_INGOT, 1), new Object[] { "NNN", "NNN", "NNN", 'N', ModItems.ironnugget});
+		}
+		
+		if(Config.observer)
+			GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.observer, 1), new Object[] { "SSS", "RRQ", "SSS", 'S', Blocks.COBBLESTONE, 'R', Items.REDSTONE, 'Q', Items.QUARTZ});
 	}
 
 	public static void registerSmeltings() 
 	{
 		if(Config.terracottablocks)
 		{
-			//TERRACOTTA
 			GameRegistry.addSmelting(new ItemStack(Blocks.STAINED_HARDENED_CLAY, 1, 0), new ItemStack(ModBlocks.terracotta_white, 1), 1.0F);
 			GameRegistry.addSmelting(new ItemStack(Blocks.STAINED_HARDENED_CLAY, 1, 1), new ItemStack(ModBlocks.terracotta_orange, 1), 1.0F);
 			GameRegistry.addSmelting(new ItemStack(Blocks.STAINED_HARDENED_CLAY, 1, 2), new ItemStack(ModBlocks.terracotta_magenta, 1), 1.0F);

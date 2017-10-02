@@ -41,6 +41,7 @@ public class ConcretePowder extends Block implements IMetaBlockName
 		setHarvestLevel("shovel", 0);
 		
 		setDefaultState(blockState.getBaseState().withProperty(TYPE, ConcreteEnum.Type.WHITE));
+		setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
 	}
 
 	@Override

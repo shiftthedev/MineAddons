@@ -4,8 +4,6 @@ import net.minecraft.util.IStringSerializable;
 
 public class LavaSpongeEnum 
 {
-	public LavaSpongeEnum() {}
-
 	public static enum Type implements IStringSerializable
 	{
 		DRY("dry", 0),

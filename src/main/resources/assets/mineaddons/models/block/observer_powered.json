@@ -1,0 +1,6 @@
+{
+    "parent": "mineaddons:block/observer",
+    "textures": {
+        "bottom": "mineaddons:blocks/observer_back_lit"
+    }
+}

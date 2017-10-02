@@ -34,6 +34,7 @@ public class Concrete extends Block implements IMetaBlockName
 		setHarvestLevel("pickaxe", 0);
 
 		setDefaultState(blockState.getBaseState().withProperty(TYPE, ConcreteEnum.Type.WHITE));
+		setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
 	}
 
 	@Override

@@ -11,6 +11,7 @@ import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -38,6 +39,7 @@ public class MagentaTerracotta extends Block
     setHardness(1.4F);
     setResistance(7.0F);
     setHarvestLevel("pickaxe", 0);
+    setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
   }
   
 

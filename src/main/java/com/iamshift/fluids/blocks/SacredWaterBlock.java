@@ -4,8 +4,10 @@ import java.util.Random;
 
 import javax.annotation.Nonnull;
 
+import com.iamshift.Config;
 import com.iamshift.References;
 import com.iamshift.fluids.ModFluids;
+import com.iamshift.interfaces.IMobChanger;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLiquid;
@@ -265,6 +267,12 @@ public class SacredWaterBlock extends BlockFluidClassic
 
 	private boolean tryConvertMob(World world, BlockPos pos, IBlockState state, Entity entity) 
 	{
+		if(entity instanceof IMobChanger)
+		{
+			((IMobChanger) entity).sacredWaterEffect();
+			return true;
+		}
+		
 		if(entity instanceof EntitySkeleton)
 		{
 			EntitySkeleton skeleton = (EntitySkeleton) entity;

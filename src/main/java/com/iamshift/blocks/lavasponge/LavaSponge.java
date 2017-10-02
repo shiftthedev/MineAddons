@@ -44,6 +44,7 @@ public class LavaSponge extends Block implements IMetaBlockName
 		setSoundType(SoundType.PLANT);
 		
 		setDefaultState(this.blockState.getBaseState().withProperty(TYPE, LavaSpongeEnum.Type.DRY));
+		setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
 	}
 
 	@Override

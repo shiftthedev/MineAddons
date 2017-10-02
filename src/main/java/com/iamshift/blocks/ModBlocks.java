@@ -7,6 +7,7 @@ import com.iamshift.blocks.concrete.ConcreteEnum;
 import com.iamshift.blocks.concrete.ConcretePowder;
 import com.iamshift.blocks.lavasponge.LavaSponge;
 import com.iamshift.blocks.lavasponge.LavaSpongeEnum;
+import com.iamshift.blocks.observer.Observer;
 import com.iamshift.blocks.terracotta.BlackTerracotta;
 import com.iamshift.blocks.terracotta.BlueTerracotta;
 import com.iamshift.blocks.terracotta.BrownTerracotta;
@@ -26,7 +27,6 @@ import com.iamshift.blocks.terracotta.YellowTerracotta;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.util.ResourceLocation;
@@ -56,7 +56,9 @@ public class ModBlocks
 	public static Block terracotta_black;
 
 	public static Block lavasponge;
-
+	
+	public static Block observer;
+	
 	public static void init()
 	{
 		if(Config.concrete)
@@ -86,9 +88,10 @@ public class ModBlocks
 		}
 
 		if(Config.lavasponge)
-		{
 			lavasponge = new LavaSponge("lavasponge");
-		}
+		
+		if(Config.observer)
+			observer = new Observer("observer");
 	}
 
 	public static void register()
@@ -121,6 +124,9 @@ public class ModBlocks
 
 		if(Config.lavasponge)
 			registerBlock(lavasponge, new ItemBlockMeta(lavasponge));
+		
+		if(Config.observer)
+			registerBlock(observer, new ItemBlock(observer));
 	}
 
 	public static void registerRenders()
@@ -159,22 +165,23 @@ public class ModBlocks
 			for(LavaSpongeEnum.Type type : LavaSpongeEnum.Type.values())
 				registerRender(lavasponge, type.getID(), "lavasponge_" + type.getName());
 		}
+		
+		if(Config.observer)
+			registerRender(observer);
 	}
 
 	private static void registerBlock(Block block)
 	{
-		block.setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
 		GameRegistry.register(block);
 		GameRegistry.register(new ItemBlock(block).setRegistryName(block.getRegistryName()));
 	}
 
 	private static void registerBlock(Block block, ItemBlock itemBlock)
 	{
-		block.setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
 		GameRegistry.register(block);
 		GameRegistry.register(itemBlock.setRegistryName(block.getRegistryName()));
 	}
-
+	
 	private static void registerRender(Block block)
 	{
 		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(block), 0, new ModelResourceLocation(block.getRegistryName(), "inventory"));
