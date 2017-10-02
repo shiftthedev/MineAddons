@@ -79,6 +79,9 @@ public class RecipeHandler
 		
 		if(Config.observer)
 			GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.observer, 1), new Object[] { "SSS", "RRQ", "SSS", 'S', Blocks.COBBLESTONE, 'R', Items.REDSTONE, 'Q', Items.QUARTZ});
+		
+		if(Config.supernametag)
+			GameRegistry.addShapelessRecipe(new ItemStack(ModItems.supernametag, 1), new Object[] {Items.NAME_TAG, Items.GOLDEN_APPLE});
 	}
 
 	public static void registerSmeltings() 
