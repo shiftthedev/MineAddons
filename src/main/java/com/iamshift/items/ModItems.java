@@ -22,6 +22,12 @@ public class ModItems
 	
 	public static Item supernametag;
 	
+	public static Item sushi;
+	
+	public static Item ancientessence;
+	
+	public static Item noaishulkerspawnegg;
+	
 	public static void init()
 	{
 		if(Config.buttbooster)
@@ -49,5 +55,17 @@ public class ModItems
 		
 		if(Config.supernametag)
 			supernametag = new SuperNameTag("supernametag");
+		
+		if(Config.endexpansion)
+		{
+			if(Config.endercarp || Config.ancientcarp)
+				sushi = new Sushi("sushi");
+			
+			if(Config.ancientcarp && Config.noaishulker)
+				ancientessence = new AncientEssence("ancientessence");
+			
+			if(Config.noaishulker)
+				noaishulkerspawnegg = new NoAiShulkerSpawnEgg("noaishulkerspawnegg");
+		}
 	}
 }

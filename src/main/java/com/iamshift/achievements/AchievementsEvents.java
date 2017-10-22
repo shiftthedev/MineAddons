@@ -1,6 +1,5 @@
 package com.iamshift.achievements;
 
-import com.iamshift.blocks.lavasponge.LavaSponge;
 import com.iamshift.items.Booster;
 import com.iamshift.items.RainbowBottle;
 import com.iamshift.items.WitherDust;

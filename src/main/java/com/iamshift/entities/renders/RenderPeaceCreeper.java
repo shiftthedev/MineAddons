@@ -1,21 +1,17 @@
 package com.iamshift.entities.renders;
 
 import com.iamshift.References;
-import com.iamshift.entities.EntityPeaceCreeper;
-import com.iamshift.entities.EntityTrueCreeper;
+import com.iamshift.entities.PeaceCreeper;
 import com.iamshift.entities.models.ModelPeaceCreeper;
 
-import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class RenderPeaceCreeper extends RenderLiving<EntityPeaceCreeper>
+public class RenderPeaceCreeper extends RenderLiving<PeaceCreeper>
 {
     private static final ResourceLocation CREEPER_TEXTURES = new ResourceLocation(References.MODID, "textures/entities/peacecreeper.png");
 
@@ -26,7 +22,7 @@ public class RenderPeaceCreeper extends RenderLiving<EntityPeaceCreeper>
     }
 
 	@Override
-	protected ResourceLocation getEntityTexture(EntityPeaceCreeper entity) 
+	protected ResourceLocation getEntityTexture(PeaceCreeper entity) 
 	{
 		return CREEPER_TEXTURES;
 	}

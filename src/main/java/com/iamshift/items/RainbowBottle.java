@@ -1,6 +1,7 @@
 package com.iamshift.items;
 
-import com.iamshift.MineAddons;
+import java.util.List;
+
 import com.iamshift.References;
 
 import net.minecraft.creativetab.CreativeTabs;
@@ -9,8 +10,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class RainbowBottle extends Item
@@ -75,5 +76,13 @@ public class RainbowBottle extends Item
 	{
 		thrower = player.getName();
 		return true;
+	}
+	
+	@Override
+	public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) 
+	{
+		super.addInformation(stack, playerIn, tooltip, advanced);
+		tooltip.add(TextFormatting.GREEN + "Throw on water to see the magic.");
+		tooltip.add(TextFormatting.RED + "Will not work in Ocean or Deep Ocean!");
 	}
 }

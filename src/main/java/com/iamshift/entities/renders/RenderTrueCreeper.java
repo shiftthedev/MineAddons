@@ -1,20 +1,19 @@
 package com.iamshift.entities.renders;
 
 import com.iamshift.References;
-import com.iamshift.entities.EntityTrueCreeper;
+import com.iamshift.entities.TrueCreeper;
 import com.iamshift.entities.models.ModelTrueCreeper;
 
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class RenderTrueCreeper extends RenderLiving<EntityTrueCreeper>
+public class RenderTrueCreeper extends RenderLiving<TrueCreeper>
 {
     private static final ResourceLocation CREEPER_TEXTURES = new ResourceLocation(References.MODID, "textures/entities/truecreeper.png");
 
@@ -27,7 +26,7 @@ public class RenderTrueCreeper extends RenderLiving<EntityTrueCreeper>
      * Allows the render to do state modifications necessary before the model is rendered.
      */
     @Override
-    protected void preRenderCallback(EntityTrueCreeper entitylivingbaseIn, float partialTickTime)
+    protected void preRenderCallback(TrueCreeper entitylivingbaseIn, float partialTickTime)
     {
         float f = entitylivingbaseIn.getCreeperFlashIntensity(partialTickTime);
         float f1 = 1.0F + MathHelper.sin(f * 100.0F) * f * 0.01F;
@@ -43,7 +42,7 @@ public class RenderTrueCreeper extends RenderLiving<EntityTrueCreeper>
      * Gets an RGBA int color multiplier to apply.
      */
     @Override
-    protected int getColorMultiplier(EntityTrueCreeper entitylivingbaseIn, float lightBrightness, float partialTickTime)
+    protected int getColorMultiplier(TrueCreeper entitylivingbaseIn, float lightBrightness, float partialTickTime)
     {
         float f = entitylivingbaseIn.getCreeperFlashIntensity(partialTickTime);
 
@@ -60,7 +59,7 @@ public class RenderTrueCreeper extends RenderLiving<EntityTrueCreeper>
     }
 
 	@Override
-	protected ResourceLocation getEntityTexture(EntityTrueCreeper entity) 
+	protected ResourceLocation getEntityTexture(TrueCreeper entity) 
 	{
 		return CREEPER_TEXTURES;
 	}

@@ -9,6 +9,7 @@ import com.iamshift.blocks.ModBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDynamicLiquid;
 import net.minecraft.block.BlockStaticLiquid;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
@@ -17,6 +18,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -26,7 +28,7 @@ import net.minecraft.world.World;
 
 public class ConcretePowder extends Block implements IMetaBlockName
 {
-	public static final PropertyEnum TYPE = PropertyEnum.create("type", ConcreteEnum.Type.class);
+	public static final PropertyEnum TYPE = PropertyEnum.create("type", EnumDyeColor.class);
 
 	private static final BlockStaticLiquid water = Blocks.WATER;
 	private static final BlockDynamicLiquid flowing_water = Blocks.FLOWING_WATER;
@@ -39,16 +41,17 @@ public class ConcretePowder extends Block implements IMetaBlockName
 		setHardness(0.5F);
 		setResistance(2.5F);
 		setHarvestLevel("shovel", 0);
+		setSoundType(SoundType.SAND);
 		
-		setDefaultState(blockState.getBaseState().withProperty(TYPE, ConcreteEnum.Type.WHITE));
+		setDefaultState(blockState.getBaseState().withProperty(TYPE, EnumDyeColor.WHITE));
 		setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
 	}
 
 	@Override
 	public void getSubBlocks(Item itemIn, CreativeTabs tab, List<ItemStack> list)
 	{
-		for (ConcreteEnum.Type type : ConcreteEnum.Type.values()) 
-			list.add(new ItemStack(itemIn, 1, type.getID()));
+		for(EnumDyeColor color : EnumDyeColor.values())
+			list.add(new ItemStack(itemIn, 1, color.getMetadata()));
 	}
 
 	@Override
@@ -72,20 +75,19 @@ public class ConcretePowder extends Block implements IMetaBlockName
 	@Override
 	public int getMetaFromState(IBlockState state)
 	{
-		ConcreteEnum.Type type = (ConcreteEnum.Type)state.getValue(TYPE);
-		return type.getID();
+		return ((EnumDyeColor)state.getValue(TYPE)).getMetadata();
 	}
 
 	@Override
 	public IBlockState getStateFromMeta(int meta)
 	{
-		return getDefaultState().withProperty(TYPE, ConcreteEnum.Type.values()[meta]);
+		return getDefaultState().withProperty(TYPE, EnumDyeColor.byMetadata(meta));
 	}
 
 	@Override
 	public String getSpecialName(ItemStack stack)
 	{
-		return ConcreteEnum.Type.values()[stack.getItemDamage()].getName();
+		return EnumDyeColor.values()[stack.getItemDamage()].getName();
 	}
 
 	@Override

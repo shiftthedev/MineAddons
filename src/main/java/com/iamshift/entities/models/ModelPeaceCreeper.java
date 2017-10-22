@@ -1,6 +1,6 @@
 package com.iamshift.entities.models;
 
-import com.iamshift.entities.EntityPeaceCreeper;
+import com.iamshift.entities.PeaceCreeper;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
@@ -73,7 +73,7 @@ public class ModelPeaceCreeper extends ModelBase
 	@Override
 	public void setLivingAnimations(EntityLivingBase entitylivingbaseIn, float limbSwingAmount, float ageInTicks, float partialTickTime) 
 	{
-		EntityPeaceCreeper creeper = (EntityPeaceCreeper) entitylivingbaseIn;
+		PeaceCreeper creeper = (PeaceCreeper) entitylivingbaseIn;
 		
 		if(creeper.isSitting())
 		{

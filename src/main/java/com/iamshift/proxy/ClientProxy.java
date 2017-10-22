@@ -3,12 +3,19 @@ package com.iamshift.proxy;
 import com.iamshift.Config;
 import com.iamshift.References;
 import com.iamshift.blocks.ModBlocks;
-import com.iamshift.entities.EntityPeaceCreeper;
-import com.iamshift.entities.EntityTrueCreeper;
+import com.iamshift.entities.AncientCarp;
+import com.iamshift.entities.EnderCarp;
+import com.iamshift.entities.PeaceCreeper;
+import com.iamshift.entities.TrueCreeper;
+import com.iamshift.entities.VoidCreeper;
+import com.iamshift.entities.renders.RenderAncientCarp;
+import com.iamshift.entities.renders.RenderEnderCarp;
 import com.iamshift.entities.renders.RenderPeaceCreeper;
 import com.iamshift.entities.renders.RenderTrueCreeper;
+import com.iamshift.entities.renders.RenderVoidCreeper;
 import com.iamshift.fluids.ModFluids;
 import com.iamshift.items.ModItems;
+import com.iamshift.utils.SoundManager;
 
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -23,17 +30,17 @@ import net.minecraftforge.fml.client.registry.RenderingRegistry;
 public class ClientProxy extends CommonProxy
 {
 	private static ModelResourceLocation fluid_location;
-
+	
 	@Override
 	public void registerRenders() 
 	{
+		ModBlocks.registerRenders();
+		
 		if(Config.buttbooster)
 			ModelLoader.setCustomModelResourceLocation(ModItems.buttBooster, 0, new ModelResourceLocation(ModItems.buttBooster.getRegistryName(), "inventory"));
 
 		if(Config.lavasponge || Config.sponge)
 			ModelLoader.setCustomModelResourceLocation(ModItems.cellulose, 0, new ModelResourceLocation(ModItems.cellulose.getRegistryName(), "inventory"));
-
-		ModBlocks.registerRenders();
 
 		if(Config.lavasponge)
 			ModelBakery.registerItemVariants(Item.getItemFromBlock(ModBlocks.lavasponge), new ResourceLocation[] { new ResourceLocation(References.MODID, "lavasponge"), new ResourceLocation(References.MODID, "lavasponge_wet") });
@@ -49,7 +56,7 @@ public class ClientProxy extends CommonProxy
 							new ResourceLocation(References.MODID, "concrete_lime"), 
 							new ResourceLocation(References.MODID, "concrete_pink"), 
 							new ResourceLocation(References.MODID, "concrete_gray"), 
-							new ResourceLocation(References.MODID, "concrete_light_gray"), 
+							new ResourceLocation(References.MODID, "concrete_silver"), 
 							new ResourceLocation(References.MODID, "concrete_cyan"), 
 							new ResourceLocation(References.MODID, "concrete_purple"), 
 							new ResourceLocation(References.MODID, "concrete_blue"), 
@@ -67,7 +74,7 @@ public class ClientProxy extends CommonProxy
 							new ResourceLocation(References.MODID, "concrete_powder_lime"), 
 							new ResourceLocation(References.MODID, "concrete_powder_pink"), 
 							new ResourceLocation(References.MODID, "concrete_powder_gray"), 
-							new ResourceLocation(References.MODID, "concrete_powder_light_gray"), 
+							new ResourceLocation(References.MODID, "concrete_powder_silver"), 
 							new ResourceLocation(References.MODID, "concrete_powder_cyan"), 
 							new ResourceLocation(References.MODID, "concrete_powder_purple"), 
 							new ResourceLocation(References.MODID, "concrete_powder_blue"), 
@@ -90,7 +97,7 @@ public class ClientProxy extends CommonProxy
 
 		if(Config.truecreeper)
 		{
-			RenderingRegistry.registerEntityRenderingHandler(EntityTrueCreeper.class, new IRenderFactory() 
+			RenderingRegistry.registerEntityRenderingHandler(TrueCreeper.class, new IRenderFactory() 
 			{
 				@Override
 				public Render createRenderFor(RenderManager manager) 
@@ -103,7 +110,7 @@ public class ClientProxy extends CommonProxy
 		
 		if(Config.peacecreeper)
 		{
-			RenderingRegistry.registerEntityRenderingHandler(EntityPeaceCreeper.class, new IRenderFactory() 
+			RenderingRegistry.registerEntityRenderingHandler(PeaceCreeper.class, new IRenderFactory() 
 			{
 				@Override
 				public Render createRenderFor(RenderManager manager) 
@@ -119,5 +126,64 @@ public class ClientProxy extends CommonProxy
 		
 		if(Config.supernametag)
 			ModelLoader.setCustomModelResourceLocation(ModItems.supernametag, 0, new ModelResourceLocation("minecraft:name_tag", "inventory"));
+		
+		if(Config.endexpansion)
+		{
+			if(Config.endercarp || Config.ancientcarp)
+				ModelLoader.setCustomModelResourceLocation(ModItems.sushi, 0, new ModelResourceLocation(ModItems.sushi.getRegistryName(), "inventory"));
+			
+			if(Config.endercarp)
+			{
+				RenderingRegistry.registerEntityRenderingHandler(EnderCarp.class, new IRenderFactory() 
+				{
+					@Override
+					public Render createRenderFor(RenderManager manager) 
+					{
+						return new RenderEnderCarp(manager);
+					}
+
+				});
+			}
+			
+			if(Config.ancientcarp)
+			{
+				ModelLoader.setCustomModelResourceLocation(ModItems.ancientessence, 0, new ModelResourceLocation(ModItems.ancientessence.getRegistryName(), "inventory"));
+				
+				RenderingRegistry.registerEntityRenderingHandler(AncientCarp.class, new IRenderFactory() 
+				{
+					@Override
+					public Render createRenderFor(RenderManager manager) 
+					{
+						return new RenderAncientCarp(manager);
+					}
+
+				});
+			}
+			
+			if(Config.noaishulker)
+				ModelLoader.setCustomModelResourceLocation(ModItems.noaishulkerspawnegg, 0, new ModelResourceLocation(ModItems.noaishulkerspawnegg.getRegistryName(), "inventory"));
+			
+			if(Config.voidcreeper)
+			{
+				RenderingRegistry.registerEntityRenderingHandler(VoidCreeper.class, new IRenderFactory() 
+				{
+					@Override
+					public Render createRenderFor(RenderManager manager) 
+					{
+						return new RenderVoidCreeper(manager);
+					}
+
+				});
+			}
+			
+			
+			
+		}
+	}
+
+	@Override
+	public void registerSounds()
+	{
+		SoundManager.init();
 	}
 }

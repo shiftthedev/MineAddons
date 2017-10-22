@@ -6,15 +6,12 @@ import java.util.List;
 import com.iamshift.Config;
 import com.iamshift.References;
 import com.iamshift.blocks.ModBlocks;
-import com.iamshift.entities.EntityPeaceCreeper;
-import com.iamshift.entities.ModEntities;
 import com.iamshift.fluids.ModFluids;
 import com.iamshift.items.ModItems;
 
 import net.minecraft.block.Block;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemMonsterPlacer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.Achievement;
 import net.minecraftforge.common.AchievementPage;
@@ -36,6 +33,10 @@ public class AchievementHandler
 	public static Achievement achievementLavaSponge;
 	
 	public static Achievement achievementTamePeaceCreeper;
+	
+	public static Achievement achievementKillAncientCarp;
+	
+	public static Achievement achievementSpawnBrainlessShulker;
 
 	public static void init()
 	{
@@ -58,8 +59,17 @@ public class AchievementHandler
 			achievementLavaSponge = createAchievement("lavasponge", 1, 5, ModBlocks.lavasponge, null);
 		
 		if(Config.truecreeper)
+			achievementTamePeaceCreeper = createAchievement("peacecreeper", 4, 1, Items.GUNPOWDER, null);
+		
+		if(Config.endexpansion)
 		{
-			achievementTamePeaceCreeper = createAchievement("peacecreeper", 1, 7, Items.GUNPOWDER, null);
+			if(Config.ancientcarp)
+				achievementKillAncientCarp = createAchievement("ancientcarp", 4, 4, ModItems.ancientessence, null);
+			
+			if(Config.ancientcarp && Config.noaishulker)
+				achievementSpawnBrainlessShulker = createAchievement("brainshulker", 5, 4, ModItems.noaishulkerspawnegg, achievementKillAncientCarp);
+			else if(Config.noaishulker)
+				achievementSpawnBrainlessShulker = createAchievement("brainshulker", 4, 4, ModItems.noaishulkerspawnegg, null);
 		}
 	}
 

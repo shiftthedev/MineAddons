@@ -1,0 +1,8 @@
+{
+	"carpambient1": { "category": "neutral", "sounds": ["mineaddons:endercarp/ambient1"] },
+	"carpambient2": { "category": "neutral", "sounds": ["mineaddons:endercarp/ambient2"] },
+	"carpambient3": { "category": "neutral", "sounds": ["mineaddons:endercarp/ambient3"] },
+	"carpambient4": { "category": "neutral", "sounds": ["mineaddons:endercarp/ambient4"] },
+	
+	"carphurt": { "category": "neutral", "sounds": ["mineaddons:endercarp/hurt"] }
+}

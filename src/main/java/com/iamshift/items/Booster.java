@@ -3,7 +3,6 @@ package com.iamshift.items;
 import java.util.List;
 
 import com.iamshift.Config;
-import com.iamshift.MineAddons;
 import com.iamshift.References;
 
 import net.minecraft.client.resources.I18n;

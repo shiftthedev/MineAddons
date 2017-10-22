@@ -8,7 +8,7 @@
         "type=lime": { "model": "mineaddons:concrete_powder_lime" },
         "type=pink": { "model": "mineaddons:concrete_powder_pink" },
         "type=gray": { "model": "mineaddons:concrete_powder_gray" },
-        "type=light_gray": { "model": "mineaddons:concrete_powder_light_gray" },
+        "type=silver": { "model": "mineaddons:concrete_powder_light_gray" },
         "type=cyan": { "model": "mineaddons:concrete_powder_cyan" },
         "type=purple": { "model": "mineaddons:concrete_powder_purple" },
         "type=blue": { "model": "mineaddons:concrete_powder_blue" },

@@ -13,6 +13,7 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -22,7 +23,7 @@ import net.minecraft.world.World;
 
 public class Concrete extends Block implements IMetaBlockName
 {
-	public static final PropertyEnum TYPE = PropertyEnum.create("type", ConcreteEnum.Type.class);
+	public static final PropertyEnum TYPE = PropertyEnum.create("type", EnumDyeColor.class);
 
 	public Concrete(String name)
 	{
@@ -33,16 +34,15 @@ public class Concrete extends Block implements IMetaBlockName
 		setResistance(9.0F);
 		setHarvestLevel("pickaxe", 0);
 
-		setDefaultState(blockState.getBaseState().withProperty(TYPE, ConcreteEnum.Type.WHITE));
+		setDefaultState(blockState.getBaseState().withProperty(TYPE, EnumDyeColor.WHITE));
 		setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
 	}
 
 	@Override
 	public void getSubBlocks(Item itemIn, CreativeTabs tab, List<ItemStack> list)
 	{
-		for (ConcreteEnum.Type type : ConcreteEnum.Type.values()) 
-			list.add(new ItemStack(itemIn, 1, type.getID()));
-
+		for(EnumDyeColor color : EnumDyeColor.values())
+			list.add(new ItemStack(itemIn, 1, color.getMetadata()));
 	}
 
 	@Override
@@ -66,19 +66,18 @@ public class Concrete extends Block implements IMetaBlockName
 	@Override
 	public int getMetaFromState(IBlockState state)
 	{
-		ConcreteEnum.Type type = (ConcreteEnum.Type)state.getValue(TYPE);
-		return type.getID();
+		return ((EnumDyeColor)state.getValue(TYPE)).getMetadata();
 	}
 
 	@Override
 	public IBlockState getStateFromMeta(int meta)
 	{
-		return getDefaultState().withProperty(TYPE, ConcreteEnum.Type.values()[meta]);
+		return getDefaultState().withProperty(TYPE, EnumDyeColor.byMetadata(meta));
 	}
 
 	@Override
 	public String getSpecialName(ItemStack stack)
 	{
-		return ConcreteEnum.Type.values()[stack.getItemDamage()].getName();
+		return EnumDyeColor.values()[stack.getItemDamage()].getName();
 	}
 }

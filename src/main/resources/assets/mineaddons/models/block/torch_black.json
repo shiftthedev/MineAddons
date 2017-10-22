@@ -1,0 +1,6 @@
+{
+    "parent": "block/torch",
+    "textures": {
+        "torch": "mineaddons:blocks/torch_black"
+    }
+}

@@ -5,7 +5,6 @@ import com.iamshift.fluids.blocks.CursedWaterBlock;
 import com.iamshift.fluids.blocks.SacredWaterBlock;
 import com.iamshift.potions.MobChangerPotion;
 
-import net.minecraft.block.material.Material;
 import net.minecraft.potion.Potion;
 
 public class ModFluids 
