@@ -23,6 +23,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldProviderEnd;
 import net.minecraftforge.fml.relauncher.Side;
@@ -252,7 +253,7 @@ public class EnderCarp extends EntityFlying
 	@Override
 	public boolean getCanSpawnHere() 
 	{
-		if(this.worldObj.provider instanceof WorldProviderEnd && this.rand.nextInt(5) == 0)
+		if(this.worldObj.provider.getDimensionType() == DimensionType.THE_END && this.rand.nextInt(5) == 0)
 		{
 			int i = MathHelper.floor_double(this.posX);
 			int j = MathHelper.floor_double(this.getEntityBoundingBox().minY);

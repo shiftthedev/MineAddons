@@ -109,8 +109,8 @@ entity.mineaddons.voidcreeper.name=Void Creeper
 item.sushi.name=Sushi
 item.ancientessence.name=Ancient Essence
 item.noaishulkerspawnegg.name=Brainless Shulker Egg
-achievement.ancientcarp=Ridding in style!
-achievement.ancientcarp.desc=Tame an Ancient beast
+achievement.ancientcarp=Ancient Power!
+achievement.ancientcarp.desc=Kill an Ancient beast
 achievement.brainshulker=No Brains...
 achievement.brainshulker.desc=Summon a Brainless Shulker
 

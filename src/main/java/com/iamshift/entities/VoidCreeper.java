@@ -27,6 +27,7 @@ import net.minecraft.init.SoundEvents;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.DimensionType;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldProviderEnd;
@@ -57,12 +58,12 @@ public class VoidCreeper extends EntityCreeper
 		this.targetTasks.addTask(1, new VoidCreeper.AIFindPlayer(this));
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, false, new Class[0]));
 		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 10, true, false, new Predicate<EntityPlayer>()
-        {
-            public boolean apply(@Nullable EntityPlayer p_apply_1_)
-            {
-                return !p_apply_1_.capabilities.isCreativeMode;
-            }
-        }));
+		{
+			public boolean apply(@Nullable EntityPlayer p_apply_1_)
+			{
+				return !p_apply_1_.capabilities.isCreativeMode;
+			}
+		}));
 	}
 
 	@Override
@@ -81,7 +82,7 @@ public class VoidCreeper extends EntityCreeper
 	@Override
 	public boolean getCanSpawnHere() 
 	{
-		if(this.worldObj.provider instanceof WorldProviderEnd && this.rand.nextInt(10) == 0)
+		if(this.worldObj.provider.getDimensionType() == DimensionType.THE_END && this.rand.nextInt(10) == 0)
 		{
 			int i = MathHelper.floor_double(this.posX);
 			int j = MathHelper.floor_double(this.getEntityBoundingBox().minY);
@@ -129,19 +130,19 @@ public class VoidCreeper extends EntityCreeper
 
 		super.onUpdate();
 	}
-	
+
 	@Override
 	public void onLivingUpdate() 
 	{
 		super.onLivingUpdate();
-		
+
 		if (this.worldObj.isRemote)
-        {
-            for (int i = 0; i < 2; ++i)
-            {
-                this.worldObj.spawnParticle(EnumParticleTypes.PORTAL, this.posX + (this.rand.nextDouble() - 0.5D) * (double)this.width, this.posY + this.rand.nextDouble() * (double)this.height - 0.25D, this.posZ + (this.rand.nextDouble() - 0.5D) * (double)this.width, (this.rand.nextDouble() - 0.5D) * 2.0D, -this.rand.nextDouble(), (this.rand.nextDouble() - 0.5D) * 2.0D, new int[0]);
-            }
-        }
+		{
+			for (int i = 0; i < 2; ++i)
+			{
+				this.worldObj.spawnParticle(EnumParticleTypes.PORTAL, this.posX + (this.rand.nextDouble() - 0.5D) * (double)this.width, this.posY + this.rand.nextDouble() * (double)this.height - 0.25D, this.posZ + (this.rand.nextDouble() - 0.5D) * (double)this.width, (this.rand.nextDouble() - 0.5D) * 2.0D, -this.rand.nextDouble(), (this.rand.nextDouble() - 0.5D) * 2.0D, new int[0]);
+			}
+		}
 	}
 
 	private void explode()
@@ -160,18 +161,19 @@ public class VoidCreeper extends EntityCreeper
 				endermite.renderYawOffset = this.renderYawOffset;
 				endermite.setHealth(endermite.getMaxHealth());
 
-				this.worldObj.spawnEntityInWorld(endermite);}
+				this.worldObj.spawnEntityInWorld(endermite);
+			}
 		}
 	}
-	
+
 	private Explosion newExplosion(@Nullable Entity entityIn, double x, double y, double z, float size, float strength, boolean isFlaming, boolean isSmoking)
-    {
+	{
 		CustomExplosion explosion = new CustomExplosion(this.worldObj, entityIn, x, y, z, size, strength, isFlaming, isSmoking);
-        if (net.minecraftforge.event.ForgeEventFactory.onExplosionStart(this.worldObj, explosion)) return explosion;
-        explosion.doExplosionA();
-        explosion.doExplosionB(true);
-        return explosion;
-    }
+		if (net.minecraftforge.event.ForgeEventFactory.onExplosionStart(this.worldObj, explosion)) return explosion;
+		explosion.doExplosionA();
+		explosion.doExplosionB(true);
+		return explosion;
+	}
 
 	private boolean shouldAttackPlayer(EntityPlayer player)
 	{

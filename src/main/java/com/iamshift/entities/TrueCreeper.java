@@ -32,6 +32,7 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
+import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldProviderSurface;
 import net.minecraft.world.storage.loot.LootTableList;
@@ -263,8 +264,9 @@ public class TrueCreeper extends EntityMob implements IMobChanger
 	@Override
 	public boolean getCanSpawnHere() 
 	{
-		if(this.worldObj.provider instanceof WorldProviderSurface)
+		if(this.worldObj.provider.getDimensionType() == DimensionType.OVERWORLD)
 			return super.getCanSpawnHere();
+		
 
 		return false;
 	}
