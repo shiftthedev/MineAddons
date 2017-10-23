@@ -26,7 +26,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldProviderEnd;
 import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -177,6 +176,14 @@ public class AncientCarp extends EntityFlying
 			return LootManager.ANCIENTCARP;
 
 		return LootManager.ENDERCARP;
+	}
+	
+	@Override
+	public boolean canBeAttackedWithItem() 
+	{
+		
+		
+		return super.canBeAttackedWithItem();
 	}
 
 	@Override

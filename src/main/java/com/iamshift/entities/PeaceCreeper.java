@@ -273,7 +273,7 @@ public class PeaceCreeper extends EntityTameable implements IMobChanger
 	{
 		return false;
 	}
-
+	
 	// IMOBCHANGER
 	@Override
 	public void cursedWaterEffect() 

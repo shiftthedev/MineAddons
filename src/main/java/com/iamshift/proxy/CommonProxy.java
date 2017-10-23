@@ -36,6 +36,9 @@ public class CommonProxy
 	{
 		MinecraftForge.EVENT_BUS.unregister(events);
 
+		if(Config.observer)
+			MinecraftForge.EVENT_BUS.unregister(ModBlocks.observer);
+		
 		if(!AchievementHandler.isEmpty())
 			MinecraftForge.EVENT_BUS.unregister(achievements);
 	}
