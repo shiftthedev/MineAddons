@@ -1,3 +1,5 @@
+itemGroup.MineAddons=Mine Addons
+
 item.booster.name=Butt Booster
 potion.booster=Butt Boosting
 booster.tooltip.charge=Duration
@@ -114,3 +116,12 @@ achievement.ancientcarp.desc=Kill an Ancient beast
 achievement.brainshulker=No Brains...
 achievement.brainshulker.desc=Summon a Brainless Shulker
 
+item.timeskipclock.name=TimeSkip Clock
+text.timeskipclock.start=Moving foward %s hours in %s seconds.
+text.timeskipclock.cancelmsg=Type §c/timeskip cancel §fto abort.
+text.timeskipclock.cancel=Advancing time canceled.
+text.timeskipclock.skip=Advancing time.
+text.timeskipclock.complete=Advancing time complete.
+text.timeskipclock.cooldown=TimeSkip in cooldown. %s seconds left.
+achievement.timeskipclock=Playing with time!
+achievement.timeskipclock.desc=Craft a TimeSkip Clock
