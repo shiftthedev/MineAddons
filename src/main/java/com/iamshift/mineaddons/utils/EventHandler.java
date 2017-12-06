@@ -3,6 +3,7 @@ package com.iamshift.mineaddons.utils;
 import java.util.Random;
 
 import com.iamshift.mineaddons.Config;
+import com.iamshift.mineaddons.MineAddons;
 import com.iamshift.mineaddons.entities.AncientCarp;
 import com.iamshift.mineaddons.entities.ModEntities;
 import com.iamshift.mineaddons.entities.NoAiShulker;
@@ -17,6 +18,7 @@ import net.minecraft.world.storage.loot.LootPool;
 import net.minecraft.world.storage.loot.LootTableList;
 import net.minecraft.world.storage.loot.conditions.LootCondition;
 import net.minecraft.world.storage.loot.functions.LootFunction;
+import net.minecraftforge.event.CommandEvent;
 import net.minecraftforge.event.LootTableLoadEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
@@ -65,13 +67,13 @@ public class EventHandler
 				pool2.addEntry(new LootEntryItem(ModItems.rainbowBottle, 5, 0, new LootFunction[0], new LootCondition[0], "loottable:rainbowbottle"));
 		}
 	}
-	
+
 	@SubscribeEvent
 	public void onEntityDie(LivingDeathEvent event)
 	{
 		if(event.getEntity().worldObj.isRemote)
 			return;
-		
+
 		if(Config.endexpansion && !Config.ancientcarp && Config.noaishulker)
 		{
 			if(event.getEntity() instanceof EntityShulker)
@@ -84,25 +86,52 @@ public class EventHandler
 		}
 	}
 
-
+	int count = 0;
+	
 	@SubscribeEvent
 	public void onWorldTick(WorldTickEvent event)
 	{
 		if(event.world.isRemote)
 			return;
 
+		if(this.count > 1)
+		{
+			this.count--;
+			return;
+		}
+		
+		this.count = 20;
+		
 		if(Config.weathercyclecmd)
 		{
-			if(!event.world.isRaining())
-				return;
+			boolean isRaining = event.world.isRaining();
 			
-			if(!event.world.getGameRules().hasRule("doWeatherCycle"))
-				return;
-
 			if(event.world.getGameRules().getBoolean("doWeatherCycle"))
 				return;
-
-			event.world.getWorldInfo().setRaining(false);
+			
+			if(isRaining == MineAddons.raining)
+				return;
+			else
+			{
+				System.out.println("set " + MineAddons.raining);
+				event.world.getWorldInfo().setRaining(MineAddons.raining);
+			}
+		}
+	}
+	
+	@SubscribeEvent
+	public void onWeatherCommand(CommandEvent event)
+	{
+		if(Config.weathercyclecmd)
+		{
+			if(event.getCommand().getCommandName().toLowerCase().equals("toggledownfall"))
+				MineAddons.raining = !MineAddons.raining;
+			else
+				if(event.getCommand().getCommandName().toLowerCase().equals("weather"))
+					if(event.getParameters()[0].toLowerCase().equals("rain") || event.getParameters()[0].toLowerCase().equals("thunder"))
+						MineAddons.raining = true;
+					else if(event.getParameters()[0].toLowerCase().equals("clear"))
+						MineAddons.raining = false;
 		}
 	}
 

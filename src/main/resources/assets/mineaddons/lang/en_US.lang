@@ -56,8 +56,8 @@ tile.concrete_powder.green.name=Green Concrete Powder Block
 tile.concrete_powder.red.name=Red Concrete Powder Block
 tile.concrete_powder.black.name=Black Concrete Powder Block
 
-tile.lavasponge.dry.name=Lava Sponge
-tile.lavasponge.wet.name=Wet Lava Sponge
+tile.lavasponge_dry.name=Lava Sponge
+tile.lavasponge_wet.name=Wet Lava Sponge
 
 fluid.sacredwater=Sacred Water
 fluid.cursedwater=Cursed Water

@@ -64,10 +64,7 @@ public class RecipeHandler
 		}
 
 		if(Config.lavasponge)
-		{
 			GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.lavasponge, 1, 0), new Object[] { Blocks.SOUL_SAND, ModItems.cellulose, ModItems.cellulose, ModItems.cellulose, ModItems.cellulose});
-			GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.lavasponge, 1, 0), new Object[] { new ItemStack(ModBlocks.lavasponge, 1, 1), Items.WATER_BUCKET.setContainerItem(Items.BUCKET) });
-		}
 		
 		if(Config.sponge)
 			GameRegistry.addShapelessRecipe(new ItemStack(Blocks.SPONGE, 1, 0), new Object[] { Blocks.SAND, ModItems.cellulose, ModItems.cellulose, ModItems.cellulose, ModItems.cellulose});

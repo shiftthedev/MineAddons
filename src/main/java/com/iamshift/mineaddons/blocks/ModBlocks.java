@@ -21,8 +21,8 @@ import com.iamshift.mineaddons.blocks.colorabletorch.WhiteTorch;
 import com.iamshift.mineaddons.blocks.colorabletorch.YellowTorch;
 import com.iamshift.mineaddons.blocks.concrete.Concrete;
 import com.iamshift.mineaddons.blocks.concrete.ConcretePowder;
+import com.iamshift.mineaddons.blocks.lavasponge.ItemLavaSponge;
 import com.iamshift.mineaddons.blocks.lavasponge.LavaSponge;
-import com.iamshift.mineaddons.blocks.lavasponge.LavaSpongeEnum;
 import com.iamshift.mineaddons.blocks.observer.Observer;
 import com.iamshift.mineaddons.blocks.terracotta.BlackTerracotta;
 import com.iamshift.mineaddons.blocks.terracotta.BlueTerracotta;
@@ -177,7 +177,7 @@ public class ModBlocks
 		}
 
 		if(Config.lavasponge)
-			registerBlock(lavasponge, new ItemBlockMeta(lavasponge));
+			registerBlock(lavasponge, new ItemLavaSponge(lavasponge));
 
 		if(Config.observer)
 			registerBlock(observer, new ItemBlock(observer));
@@ -236,8 +236,8 @@ public class ModBlocks
 
 		if(Config.lavasponge)
 		{
-			for(LavaSpongeEnum.Type type : LavaSpongeEnum.Type.values())
-				registerRender(lavasponge, type.getID(), "lavasponge_" + type.getName());
+			registerRender(lavasponge, 0, "lavasponge_dry");
+			registerRender(lavasponge, 0, "lavasponge_wet");
 		}
 
 		if(Config.observer)

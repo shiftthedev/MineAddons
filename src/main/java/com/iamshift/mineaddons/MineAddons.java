@@ -34,6 +34,8 @@ public class MineAddons
 	public static SimpleNetworkWrapper network;
 	
 	public static CreativeTabs mineaddonstab;
+	
+	public static boolean raining;
 
 	static 
 	{
@@ -87,8 +89,12 @@ public class MineAddons
 			event.registerServerCommand(new TimeSkipCommand());
 		
 		if(Config.weathercyclecmd)
+		{
+			raining = event.getServer().getEntityWorld().isRaining();
+			
 			if(!event.getServer().getEntityWorld().getGameRules().hasRule("doWeatherCycle"))
 				event.getServer().getEntityWorld().getGameRules().setOrCreateGameRule("doWeatherCycle", "true");
+		}
 	}
 	
 	@Mod.EventHandler

@@ -1,6 +1,6 @@
 {
 	"variants": {
-		"type=dry": { "model": "mineaddons:lavasponge" },
-        "type=wet": { "model": "mineaddons:lavasponge_wet" }
+		"wet=false": { "model": "mineaddons:lavasponge" },
+        "wet=true": { "model": "mineaddons:lavasponge_wet" }
 	}
 }

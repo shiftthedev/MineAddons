@@ -43,7 +43,10 @@ public class ClientProxy extends CommonProxy
 			ModelLoader.setCustomModelResourceLocation(ModItems.cellulose, 0, new ModelResourceLocation(ModItems.cellulose.getRegistryName(), "inventory"));
 
 		if(Config.lavasponge)
-			ModelBakery.registerItemVariants(Item.getItemFromBlock(ModBlocks.lavasponge), new ResourceLocation[] { new ResourceLocation(References.MODID, "lavasponge"), new ResourceLocation(References.MODID, "lavasponge_wet") });
+		{
+			ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(ModBlocks.lavasponge), 0, new ModelResourceLocation(new ResourceLocation(References.MODID, "lavasponge_dry"), "inventory"));
+			ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(ModBlocks.lavasponge), 1, new ModelResourceLocation(new ResourceLocation(References.MODID, "lavasponge_wet"), "inventory"));
+		}
 
 		if(Config.concrete)
 		{

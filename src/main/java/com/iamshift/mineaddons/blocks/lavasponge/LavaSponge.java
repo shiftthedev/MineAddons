@@ -12,7 +12,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
-import net.minecraft.block.properties.PropertyEnum;
+import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
@@ -32,7 +32,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class LavaSponge extends Block implements IMetaBlockName
 {
-	public static final PropertyEnum TYPE = PropertyEnum.create("type", LavaSpongeEnum.Type.class);
+	public static final PropertyBool WET = PropertyBool.create("wet");
 
 	public LavaSponge(String name) 
 	{
@@ -43,53 +43,50 @@ public class LavaSponge extends Block implements IMetaBlockName
 		setHardness(0.3F);
 		setSoundType(SoundType.PLANT);
 		
-		setDefaultState(this.blockState.getBaseState().withProperty(TYPE, LavaSpongeEnum.Type.DRY));
+		this.setDefaultState(this.getDefaultState().withProperty(WET, Boolean.valueOf(false)));
 	}
 
 	@Override
 	public void getSubBlocks(Item itemIn, CreativeTabs tab, List<ItemStack> list)
 	{
-		for (LavaSpongeEnum.Type type : LavaSpongeEnum.Type.values()) 
-		{
-			list.add(new ItemStack(itemIn, 1, type.getID()));
-		}
+		list.add(new ItemStack(this, 1, 0));
+		list.add(new ItemStack(this, 1, 1));
 	}
 	
 	@Override
 	public int damageDropped(IBlockState state) 
 	{
-		return getMetaFromState(state);
+		return ((Boolean)state.getValue(WET)) ? 1 : 0;
 	}
 	
 	@Override
 	public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) 
 	{
-		return new ItemStack(Item.getItemFromBlock(this), 1, getMetaFromState(state));
+		return new ItemStack(Item.getItemFromBlock(this), 1, this.getMetaFromState(state));
 	}
 	
 	@Override
 	protected BlockStateContainer createBlockState() 
 	{
-		return new BlockStateContainer(this, new IProperty[] {TYPE});
+		return new BlockStateContainer(this, new IProperty[] { WET } );
 	}
 	
 	@Override
 	public int getMetaFromState(IBlockState state) 
 	{
-		LavaSpongeEnum.Type type = (LavaSpongeEnum.Type)state.getValue(TYPE);
-		return type.getID();
+		return ((Boolean)state.getValue(WET)) ? 1 : 0;
 	}
 	
 	@Override
 	public IBlockState getStateFromMeta(int meta) 
 	{
-		return getDefaultState().withProperty(TYPE, LavaSpongeEnum.Type.values()[meta]);
+		return this.getDefaultState().withProperty(WET, Boolean.valueOf(meta == 1));
 	}
 	
 	@Override
 	public String getSpecialName(ItemStack stack) 
 	{
-		return LavaSpongeEnum.Type.values()[stack.getItemDamage()].getName();
+		return stack.getItemDamage() == 0 ? "dry" : "wet";
 	}
 	
 	@Override
@@ -107,9 +104,9 @@ public class LavaSponge extends Block implements IMetaBlockName
 	
 	protected void tryAbsorb(World worldIn, BlockPos pos, IBlockState state) 
 	{
-		if (((LavaSpongeEnum.Type)state.getValue(TYPE) == LavaSpongeEnum.Type.DRY) && this.absorb(worldIn, pos))
+		if((!(Boolean)state.getValue(WET)) && this.absorb(worldIn, pos))
 		{
-			worldIn.setBlockState(pos, state.withProperty(TYPE, LavaSpongeEnum.Type.WET), 2);
+			worldIn.setBlockState(pos, state.withProperty(WET, Boolean.valueOf(true)), 2);
 			worldIn.playEvent(2001, pos, Block.getIdFromBlock(Blocks.LAVA));
 		}
 	}
@@ -162,7 +159,7 @@ public class LavaSponge extends Block implements IMetaBlockName
 	@SideOnly(Side.CLIENT)
 	public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) 
 	{
-		if ((LavaSpongeEnum.Type)stateIn.getValue(TYPE) == LavaSpongeEnum.Type.WET)
+		if ((Boolean)stateIn.getValue(WET))
 		{
 			EnumFacing enumfacing = EnumFacing.random(rand);
 
