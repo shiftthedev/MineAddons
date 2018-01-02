@@ -30,33 +30,33 @@ public class EntityWaterChanger extends EntityItem
 	{
 		super(worldIn, x, y, z, stack);
 	}
-	
+
 	@Override
 	public void onUpdate() 
 	{
 		super.onUpdate();
-		
+
 		Item item = this.getEntityItem().getItem();
-		
+
 		if(this.getThrower() == null)
 			return;
-		
+
 		EntityPlayer player = this.worldObj.getPlayerEntityByName(this.getThrower());
-		
+
 		int x = MathHelper.floor_double(this.posX);
 		int y = MathHelper.floor_double((this.getEntityBoundingBox().minY + this.getEntityBoundingBox().maxY) / 2.0D);
 		int z = MathHelper.floor_double(this.posZ);
-		
+
 		BlockPos pos = new BlockPos(x, y, z);
 
 		IBlockState state = this.worldObj.getBlockState(pos);
 		Material mat = state.getMaterial();
 		Biome biome = this.worldObj.getBiome(pos);
-		
+
 		IBlockState stateAbove = this.worldObj.getBlockState(new BlockPos(x, y+1, z));
 		if(stateAbove != Blocks.AIR.getDefaultState())
 			return;
-		
+
 		if(mat.isLiquid() 
 				&& mat == Material.WATER 
 				&& state.getBlock().getUnlocalizedName().equals("tile.water") 
@@ -67,25 +67,33 @@ public class EntityWaterChanger extends EntityItem
 			if(Config.sacredwater && item instanceof RainbowBottle)
 			{
 				this.worldObj.setBlockState(pos, ModFluids.sacredwater_block.getDefaultState());
-				this.setDead();
-				
+
+				--this.getEntityItem().stackSize;
+
+				if(this.getEntityItem().stackSize <= 0)
+					this.setDead();
+
 				if(!player.hasAchievement(AchievementHandler.achievementSacredWater))
 					player.addStat(AchievementHandler.achievementSacredWater);
-				
+
 				return;
 			}
-			
+
 			if(Config.cursedwater && item instanceof WitherDust)
 			{
 				this.worldObj.setBlockState(pos, ModFluids.cursedwater_block.getDefaultState());
-				this.setDead();
-				
+
+				--this.getEntityItem().stackSize;
+
+				if(this.getEntityItem().stackSize <= 0)
+					this.setDead();
+
 				if(!player.hasAchievement(AchievementHandler.achievementCursedWater))
 					player.addStat(AchievementHandler.achievementCursedWater);
-				
+
 				return;
 			}
-			
+
 		}
 
 	}

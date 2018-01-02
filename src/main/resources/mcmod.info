@@ -3,7 +3,7 @@
   "modid": "mineaddons",
   "name": "Mine Addons",
   "description": "A mod that adds extras to minecraft.",
-  "version": "1.3.1",
+  "version": "1.3.2",
   "mcversion": "${mcversion}",
   "url": "",
   "updateUrl": "",

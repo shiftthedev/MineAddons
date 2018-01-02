@@ -41,7 +41,7 @@ public class AncientCarp extends EntityFlying
 	{
 		super(worldIn);
 		this.experienceValue = 50;
-		this.setSize(3.5F, 2F);
+		this.setSize(3F, 2F);
 		this.enablePersistence();
 
 		this.moveHelper = new AncientCarp.CarpMoveHelper(this);
@@ -134,7 +134,10 @@ public class AncientCarp extends EntityFlying
 	@Override
 	public boolean isEntityInvulnerable(DamageSource source) 
 	{
-		return super.isEntityInvulnerable(source) || (!source.isProjectile() && !source.isCreativePlayer());
+		if(((EntityPlayer) source.getSourceOfDamage()).getHeldItemMainhand().getItem().getRegistryName().getResourceDomain().toLowerCase().contains("woot"))
+			return true;
+		
+		return super.isEntityInvulnerable(source);
 	}
 
 	@Override
@@ -178,14 +181,6 @@ public class AncientCarp extends EntityFlying
 		return LootManager.ENDERCARP;
 	}
 	
-	@Override
-	public boolean canBeAttackedWithItem() 
-	{
-		
-		
-		return super.canBeAttackedWithItem();
-	}
-
 	@Override
 	public void onLivingUpdate() 
 	{
