@@ -76,7 +76,7 @@ public class PeaceCreeper extends EntityTameable implements IMobChanger
 			this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(8.0D);
 		}
 	}
-	
+
 	@Override
 	public float getEyeHeight() 
 	{
@@ -180,7 +180,7 @@ public class PeaceCreeper extends EntityTameable implements IMobChanger
 			this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(8.0D);
 		}
 	}
-
+	
 	@Override
 	public boolean processInteract(EntityPlayer player, EnumHand hand, ItemStack stack) 
 	{
@@ -236,7 +236,7 @@ public class PeaceCreeper extends EntityTameable implements IMobChanger
 					this.setOwnerId(player.getUniqueID());
 					this.playTameEffect(true);
 					this.worldObj.setEntityState(this, (byte)7);
-					
+
 					//ACHIEVEMENT
 					if(!player.hasAchievement(AchievementHandler.achievementTamePeaceCreeper))
 						player.addStat(AchievementHandler.achievementTamePeaceCreeper);
@@ -273,7 +273,7 @@ public class PeaceCreeper extends EntityTameable implements IMobChanger
 	{
 		return false;
 	}
-	
+
 	// IMOBCHANGER
 	@Override
 	public void cursedWaterEffect() 

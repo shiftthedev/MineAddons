@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.iamshift.mineaddons.References;
 
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.monster.EntityShulker;
 import net.minecraft.entity.player.EntityPlayer;

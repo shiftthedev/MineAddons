@@ -1,10 +1,16 @@
 package com.iamshift.mineaddons;
 
 import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
+
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.config.Configuration;
 
 public class Config
 {
+	public static Map<ResourceLocation, Integer> captureItems = new HashMap<ResourceLocation, Integer>();
+	
 	// CONTROL
 	private static final int VERSION = 4;
 	private static int ver;
@@ -56,6 +62,7 @@ public class Config
 
 	//ANCIENT CARP
 	public static int maxcarps = 20;
+	public static boolean captureancientcarps = false;
 
 	// TIME SKIP DELAY
 	public static int timeskipdelay = 30;
@@ -67,6 +74,15 @@ public class Config
 	{
 		if (conf == null) 
 			conf = new Configuration(configFile);
+		
+		captureItems.put(new ResourceLocation("minefactoryreloaded", "safari_net_reusable"), -1);
+		captureItems.put(new ResourceLocation("minefactoryreloaded", "safari_net_single_use"), -1);
+		captureItems.put(new ResourceLocation("notenoughwands", "capturing_wand"), -1);
+		captureItems.put(new ResourceLocation("rftools", "syringe"), -1);
+		captureItems.put(new ResourceLocation("actuallyadditions", "itemSpawnerChanger"), -1);
+		captureItems.put(new ResourceLocation("extrautils2", "goldenlasso"), -1);
+		captureItems.put(new ResourceLocation("enderio", "itemSoulVessel"), -1);
+		captureItems.put(new ResourceLocation("woot", "prism"), -1);
 
 		if(!conf.hasKey("version", "version") && configFile.exists())
 		{
@@ -108,7 +124,8 @@ public class Config
 			noaishulker = endexpansion ? conf.get("End_Expansion", "Brainless Shulker", true).getBoolean() : false;
 			voidcreeper = endexpansion ? conf.get("End_Expansion", "Void Creeper", true).getBoolean() : false;
 			maxcarps = conf.get("End_Expansion", "Max Ancient Carps", 20).getInt();
-
+			captureancientcarps = conf.get("End Expansion", "Capturable Ancient Carps", false).getBoolean();
+			
 			if(conf.hasChanged())
 				conf.save();
 
@@ -177,6 +194,7 @@ public class Config
 		noaishulker = endexpansion ? conf.get("End_Expansion", "Brainless Shulker", noaishulker).getBoolean() : false;
 		voidcreeper = endexpansion ? conf.get("End_Expansion", "Void Creeper", voidcreeper).getBoolean() : false;
 		maxcarps = conf.get("End_Expansion", "Max Ancient Carps", maxcarps).getInt();
+		captureancientcarps = conf.get("End Expansion", "Capturable Ancient Carps", captureancientcarps).getBoolean();
 
 		conf.save();
 	}

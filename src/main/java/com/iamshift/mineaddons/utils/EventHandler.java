@@ -12,7 +12,11 @@ import com.iamshift.mineaddons.fluids.blocks.CursedWaterBlock;
 import com.iamshift.mineaddons.fluids.blocks.SacredWaterBlock;
 import com.iamshift.mineaddons.items.ModItems;
 
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.monster.EntityShulker;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumHand;
 import net.minecraft.world.storage.loot.LootEntryItem;
 import net.minecraft.world.storage.loot.LootPool;
 import net.minecraft.world.storage.loot.LootTableList;
@@ -22,8 +26,8 @@ import net.minecraftforge.event.CommandEvent;
 import net.minecraftforge.event.LootTableLoadEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
+import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.EntityInteract;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent.RightClickBlock;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.fml.common.eventhandler.Event;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
@@ -87,7 +91,7 @@ public class EventHandler
 	}
 
 	int count = 0;
-	
+
 	@SubscribeEvent
 	public void onWorldTick(WorldTickEvent event)
 	{
@@ -99,16 +103,16 @@ public class EventHandler
 			this.count--;
 			return;
 		}
-		
+
 		this.count = 20;
-		
+
 		if(Config.weathercyclecmd)
 		{
 			boolean isRaining = event.world.isRaining();
-			
+
 			if(event.world.getGameRules().getBoolean("doWeatherCycle"))
 				return;
-			
+
 			if(isRaining == MineAddons.raining)
 				return;
 			else
@@ -118,7 +122,7 @@ public class EventHandler
 			}
 		}
 	}
-	
+
 	@SubscribeEvent
 	public void onWeatherCommand(CommandEvent event)
 	{
@@ -159,22 +163,107 @@ public class EventHandler
 		if(event.getItemStack() == null)
 			return;
 
-		if(event.getTarget() instanceof AncientCarp)
+		ItemStack stack = event.getItemStack();
+		Entity target = event.getTarget();
+
+		if(target instanceof PeaceCreeper)
 		{
-			event.setCanceled(true);
-			return;
+			if(Config.captureItems.containsKey(stack.getItem().getRegistryName()))
+			{
+				int meta = Config.captureItems.get(stack.getItem().getRegistryName());
+
+				if(meta == -1 || meta == stack.getItemDamage())
+				{
+					event.setCanceled(true);
+					return;
+				}
+
+			}
 		}
 
-		if(event.getTarget() instanceof NoAiShulker)
+		if(target instanceof AncientCarp)
 		{
-			event.setCanceled(true);
-			return;
+			if(Config.captureancientcarps)
+			{
+				if(Config.captureItems.containsKey(stack.getItem().getRegistryName()))
+				{
+					int meta = Config.captureItems.get(stack.getItem().getRegistryName());
+
+					if(meta == -1 || meta == stack.getItemDamage())
+					{
+						event.setCanceled(true);
+						return;
+					}
+				}
+			}
 		}
 
-		if(event.getTarget() instanceof PeaceCreeper)
+		if(target instanceof NoAiShulker)
 		{
-			event.setCanceled(true);
-			return;
+			if(Config.captureItems.containsKey(stack.getItem().getRegistryName()))
+			{
+				int meta = Config.captureItems.get(stack.getItem().getRegistryName());
+
+				if(meta == -1 || meta == stack.getItemDamage())
+				{
+					event.setCanceled(true);
+					return;
+				}
+			}
+		}
+	}
+
+	@SubscribeEvent(priority=EventPriority.HIGHEST)
+	public void onLeftClick(AttackEntityEvent event)
+	{
+		EntityPlayer player = event.getEntityPlayer();
+		Entity target = event.getTarget();
+		ItemStack stack = player.getHeldItem(EnumHand.MAIN_HAND);
+
+		if(target instanceof PeaceCreeper)
+		{
+			if(Config.captureItems.containsKey(stack.getItem().getRegistryName()))
+			{
+				int meta = Config.captureItems.get(stack.getItem().getRegistryName());
+
+				if(meta == -1 || meta == stack.getItemDamage())
+				{
+					event.setCanceled(true);
+					return;
+				}
+
+			}
+		}
+
+		if(target instanceof AncientCarp)
+		{
+			if(Config.captureancientcarps)
+			{
+				if(Config.captureItems.containsKey(stack.getItem().getRegistryName()))
+				{
+					int meta = Config.captureItems.get(stack.getItem().getRegistryName());
+
+					if(meta == -1 || meta == stack.getItemDamage())
+					{
+						event.setCanceled(true);
+						return;
+					}
+				}
+			}
+		}
+
+		if(target instanceof NoAiShulker)
+		{
+			if(Config.captureItems.containsKey(stack.getItem().getRegistryName()))
+			{
+				int meta = Config.captureItems.get(stack.getItem().getRegistryName());
+
+				if(meta == -1 || meta == stack.getItemDamage())
+				{
+					event.setCanceled(true);
+					return;
+				}
+			}
 		}
 	}
 }

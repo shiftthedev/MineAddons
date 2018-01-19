@@ -132,15 +132,6 @@ public class AncientCarp extends EntityFlying
 	}
 
 	@Override
-	public boolean isEntityInvulnerable(DamageSource source) 
-	{
-		if(((EntityPlayer) source.getSourceOfDamage()).getHeldItemMainhand().getItem().getRegistryName().getResourceDomain().toLowerCase().contains("woot"))
-			return true;
-		
-		return super.isEntityInvulnerable(source);
-	}
-
-	@Override
 	public void onDeath(DamageSource cause) 
 	{
 		if(cause.getSourceOfDamage() instanceof EntityPlayer && !(cause.getSourceOfDamage() instanceof FakePlayer))
@@ -180,7 +171,7 @@ public class AncientCarp extends EntityFlying
 
 		return LootManager.ENDERCARP;
 	}
-	
+
 	@Override
 	public void onLivingUpdate() 
 	{
